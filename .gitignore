@@ -1,0 +1,14 @@
+.idea
+.vscode
+__pycache__
+*.pyc
+*.sqlite3
+media
+logs
+backup
+.venv
+venv
+.coverage
+deployments/postgres
+static/*
+!static/.gitkeep
