@@ -14,7 +14,9 @@ class ApplicationAdmin(admin.ModelAdmin):
 
 
 class SettingAdmin(admin.ModelAdmin):
-    pass 
+    list_display = ('key', 'value', 'configuration', )
+    search_fields = ['key', 'value', 'configuration']
+    list_filter=('configuration', 'key', ) 
 
 
 class InlineSettings(admin.TabularInline):
@@ -23,7 +25,10 @@ class InlineSettings(admin.TabularInline):
 
 
 class ConfigurationAdmin(admin.ModelAdmin):
-    inlines = (InlineSettings, )       
+    inlines = (InlineSettings, )
+    search_fields = ['application', 'enviorment']
+    list_display = ('application', 'enviorment',)
+    list_filter=('application', 'enviorment', )        
 
 
 admin.site.register(Enviorment, EnviormentAdmin)    

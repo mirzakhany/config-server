@@ -24,6 +24,9 @@ class Configuration(models.Model):
     enviorment = models.ForeignKey(to=Enviorment, on_delete=models.CASCADE)
     active = models.BooleanField(default=True)
 
+    def __str__(self):
+        return "%s-%s" % (self.application, self.enviorment)
+
 
 class Setting(models.Model):
 
