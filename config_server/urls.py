@@ -19,3 +19,8 @@ from django.urls import path
 urlpatterns = [
     path('admin/', admin.site.urls),
 ]
+
+admin.site.site_header = "Config Server Admin"
+admin.site.site_title = ""
+admin.site.index_title = "Config Server dashboard"
+admin.site.site_url = None
