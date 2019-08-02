@@ -31,6 +31,9 @@ runserver:
 test:
 	python manage.py $@ --settings=$(PROJECT_NAME).settings.$(ENV) -v 3
 
+coverage:
+	coverage run --source='./apps' manage.py test --settings=$(PROJECT_NAME).settings.$(ENV) -v 3
+
 build:
 	docker build -t $(CONTAINER_BUILD_IMAGE) .	
 
