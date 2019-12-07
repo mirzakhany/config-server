@@ -1,22 +1,23 @@
 from django.contrib import admin
-from apps.configs.models import Enviorment
+from apps.configs.models import Environment
 from apps.configs.models import Application
 from apps.configs.models import Setting
 from apps.configs.models import Configuration
-# Register your models here. 
+from reversion.admin import VersionAdmin
 
-class EnviormentAdmin(admin.ModelAdmin):
+
+class EnvironmentAdmin(admin.ModelAdmin):
     pass
 
 
 class ApplicationAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('name', 'app_id', 'active', )
 
 
-class SettingAdmin(admin.ModelAdmin):
+class SettingAdmin(VersionAdmin):
     list_display = ('key', 'value', 'configuration', )
     search_fields = ['key', 'value', 'configuration']
-    list_filter=('configuration', 'key', ) 
+    list_filter = ('configuration', 'key', )
 
 
 class InlineSettings(admin.TabularInline):
@@ -26,12 +27,12 @@ class InlineSettings(admin.TabularInline):
 
 class ConfigurationAdmin(admin.ModelAdmin):
     inlines = (InlineSettings, )
-    search_fields = ['application', 'enviorment']
-    list_display = ('application', 'enviorment',)
-    list_filter=('application', 'enviorment', )        
+    search_fields = ['application', 'environment']
+    list_display = ('application', 'environment',)
+    list_filter=('application', 'environment', )
 
 
-admin.site.register(Enviorment, EnviormentAdmin)    
+admin.site.register(Environment, EnvironmentAdmin)
 admin.site.register(Application, ApplicationAdmin)    
 admin.site.register(Setting, SettingAdmin)    
-admin.site.register(Configuration, ConfigurationAdmin)    
+admin.site.register(Configuration, ConfigurationAdmin)
